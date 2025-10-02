@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry Manaswini</title>
+    <style>
+        body {
+            background-color: #FFDAB9; /* Peach color */
+            font-family: Arial, sans-serif;
+        }
+
+        #image-container {
+            text-align: center;
+        }
+        
+        #image-container img {
+            width: 50%; /* Decreased image size */
+            height: auto;
+        }
+        
+        #text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .fade-in {
+            animation: fadeIn 2s;
+        }
+        
+        .fade-out {
+            animation: fadeOut 2s;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        #love-container {
+            text-align: center;
+            display: none;
+        }
+
+        #love-container img {
+            width: 50%; /* Decreased image size */
+            height: auto;
+        }
+
+        #love-text {
+            font-size: 60px; /* Larger font size */
+            font-weight: bold;
+            margin-top: 20px;
+            color: red; /* Set the text color to red */
+        }
+
+        /* Hide the input and button after clicking start */
+        #input-container {
+            display: block;
+        }
+
+        #input-container.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="input-container">
+        <input id="num-input" type="number" placeholder="Enter a number">
+        <button id="start-btn">Start</button>
+    </div>
+    <div id="image-container" style="display: none;">
+        <img src="https://picsum.photos/400/600" alt="Image"> <!-- Smaller image -->
+        <p id="text">Sorry Manaswini</p>
+    </div>
+    <div id="love-container">
+        <img src="https://picsum.photos/400/600" alt="Love Image"> <!-- Smaller image -->
+        <p id="love-text">I LOVE YOU</p>
+    </div>
+
+    <script>
+        const numInput = document.getElementById('num-input');
+        const startBtn = document.getElementById('start-btn');
+        const imageContainer = document.getElementById('image-container');
+        const loveContainer = document.getElementById('love-container');
+        const inputContainer = document.getElementById('input-container');
+        let currentCount = 0;
+        let num;
+
+        startBtn.addEventListener('click', () => {
+            num = parseInt(numInput.value);
+            if (isNaN(num) || num <= 0) {
+                alert('Please enter a valid number');
+                return;
+            }
+            // Hide the input and button
+            inputContainer.classList.add('hidden');
+
+            // Show the first image and text
+            imageContainer.style.display = 'block';
+            imageContainer.classList.add('fade-in');
+            showImage();
+        });
+
+        function showImage() {
+            setTimeout(() => {
+                imageContainer.classList.replace('fade-in', 'fade-out');
+                setTimeout(() => {
+                    imageContainer.style.display = 'none';
+                    currentCount++;
+                    if (currentCount < num) {
+                        imageContainer.classList.replace('fade-out', 'fade-in');
+                        imageContainer.style.display = 'block';
+                        showImage();
+                    } else {
+                        // Once the loop finishes, show the love container
+                        loveContainer.style.display = 'block';
+                        loveContainer.classList.add('fade-in');
+                    }
+                }, 2000);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
