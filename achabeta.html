@@ -2,74 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorry Manaswini</title>
     <style>
         body {
-            background-color: #FFDAB9; /* Peach color */
+            background-color: #FFDAB9; /* Peach background */
             font-family: Arial, sans-serif;
-        }
-
-        #image-container {
             text-align: center;
         }
-        
-        #image-container img {
-            width: 50%; /* Decreased image size */
+
+        #image-container img,
+        #love-container img {
+            width: 40%; /* Smaller image size */
             height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
         }
-        
+
         #text {
             font-size: 24px;
             font-weight: bold;
+            margin-top: 10px;
         }
-        
+
         .fade-in {
             animation: fadeIn 2s;
         }
-        
+
         .fade-out {
             animation: fadeOut 2s;
         }
-        
+
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        
+
         @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-
-        #love-container {
-            text-align: center;
-            display: none;
-        }
-
-        #love-container img {
-            width: 50%; /* Decreased image size */
-            height: auto;
+            from { opacity: 1; }
+            to { opacity: 0; }
         }
 
         #love-text {
-            font-size: 60px; /* Larger font size */
+            font-size: 48px;
             font-weight: bold;
+            color: red;
             margin-top: 20px;
-            color: red; /* Set the text color to red */
         }
 
-        /* Hide the input and button after clicking start */
         #input-container {
-            display: block;
+            margin-top: 50px;
         }
 
         #input-container.hidden {
@@ -78,16 +59,22 @@
     </style>
 </head>
 <body>
+
+    <!-- Input Section -->
     <div id="input-container">
         <input id="num-input" type="number" placeholder="Enter a number">
         <button id="start-btn">Start</button>
     </div>
+
+    <!-- Sorry Image and Text -->
     <div id="image-container" style="display: none;">
-        <img src="https://picsum.photos/400/600" alt="Image"> <!-- Smaller image -->
+        <img src="https://picsum.photos/400/300" alt="Random Image">
         <p id="text">Sorry Manaswini</p>
     </div>
-    <div id="love-container">
-        <img src="https://picsum.photos/400/600" alt="Love Image"> <!-- Smaller image -->
+
+    <!-- Final I LOVE YOU Section -->
+    <div id="love-container" style="display: none;">
+        <img src="WhatsApp Image 2025-09-30 at 21.59.22_39d85894.jpg" alt="Love Image">
         <p id="love-text">I LOVE YOU</p>
     </div>
 
@@ -97,6 +84,7 @@
         const imageContainer = document.getElementById('image-container');
         const loveContainer = document.getElementById('love-container');
         const inputContainer = document.getElementById('input-container');
+
         let currentCount = 0;
         let num;
 
@@ -106,10 +94,11 @@
                 alert('Please enter a valid number');
                 return;
             }
-            // Hide the input and button
+
+            // Hide input area
             inputContainer.classList.add('hidden');
 
-            // Show the first image and text
+            // Show the image & text
             imageContainer.style.display = 'block';
             imageContainer.classList.add('fade-in');
             showImage();
@@ -126,7 +115,6 @@
                         imageContainer.style.display = 'block';
                         showImage();
                     } else {
-                        // Once the loop finishes, show the love container
                         loveContainer.style.display = 'block';
                         loveContainer.classList.add('fade-in');
                     }
@@ -134,5 +122,6 @@
             }, 2000);
         }
     </script>
+
 </body>
 </html>
